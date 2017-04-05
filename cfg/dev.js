@@ -29,22 +29,12 @@ let config = Object.assign({}, baseConfig, {
 // Add needed loaders to the defaults here
 config.module.loaders.push(
   {
-  test: /\.(js|jsx)$/,
-  loader: 'react-hot!babel-loader',
-  include: [].concat(
-    config.additionalPaths,
-    [ path.join(__dirname, '/../src') ]
-  )}, {
-    test: /\.less/,
-    loader: 'style-loader!css-loader!less-loader?outputStyle=expanded'
-  }, {
-    test: /\.css$/,
-    loader: 'style-loader!css-loader'
-  }, {
-    test: /\.(png|jpg|woff|woff2|eot|ttf|svg)$/,
-    loader: 'url-loader?limit=8192'
+    test: /\.(js|jsx)$/,
+    loader: 'react-hot!babel-loader',
+    include: [].concat(
+      config.additionalPaths,
+      [path.join(__dirname, '/../src')]
+    )
   }
-
 );
-
 module.exports = config;
