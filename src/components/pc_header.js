@@ -2,15 +2,19 @@
  * Created by yangqh on 2017/4/6.
  */
 import React from 'react';
-import { Row,Col } from 'antd';
-import { Menu, Icon } from 'antd';
+import {Row, Col} from 'antd';
+import {Menu, Icon, Tabs, message, Form, Input, Button, Checkbox,} from 'antd';
+const FormItem = Form.Item;
+const SubMemu = Menu.SubMenu;
+const MenuItemGroup =Menu.ItemGroup;
 class PCHeader extends React.Component {
-  constructor(){
+  constructor() {
     super();
-    this.state={
-      current:'top'
+    this.state = {
+      current: 'top'
     };
   }
+
   render() {
     return (
       <header>
@@ -24,30 +28,30 @@ class PCHeader extends React.Component {
             </a>
           </Col>
           <Col span={16}>
-            <Menu  mode="horizontal" selectedKeys={[this.state.current]}>
+            <Menu mode="horizontal" selectedKeys={[this.state.current]}>
               <Menu.Item key="top">
-                <Icon type="appstore" />头条
+                <Icon type="appstore"/>头条
               </Menu.Item>
               <Menu.Item key="shehui">
-                <Icon type="user" />社会
+                <Icon type="user"/>社会
               </Menu.Item>
               <Menu.Item key="guonei">
-                <Icon type="flag" />国内
+                <Icon type="flag"/>国内
               </Menu.Item>
               <Menu.Item key="guoji">
-                <Icon type="global" />国际
+                <Icon type="global"/>国际
               </Menu.Item>
-              <Menu.Item  key="yule">
-                <Icon type="smile" />娱乐
+              <Menu.Item key="yule">
+                <Icon type="smile"/>娱乐
               </Menu.Item>
               <Menu.Item key="tiyu">
-                <Icon type="trophy" />体育
+                <Icon type="trophy"/>体育
               </Menu.Item>
               <Menu.Item key="keji">
-                <Icon type="api" />科技
+                <Icon type="api"/>科技
               </Menu.Item>
               <Menu.Item key="shishang">
-                <Icon type="coffee" />时尚
+                <Icon type="coffee"/>时尚
               </Menu.Item>
             </Menu>
           </Col>
@@ -57,7 +61,6 @@ class PCHeader extends React.Component {
     );
   }
 }
-PCHeader.defaultProps = {
-};
+PCHeader.defaultProps = {};
 
 export default PCHeader;

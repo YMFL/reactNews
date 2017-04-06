@@ -35,6 +35,7 @@
     "eslint": "^3.0.0",
     "eslint-loader": "^1.0.0",
     "eslint-plugin-react": "^6.0.0",
+    "fetch": "^1.1.0",
     "glob": "^7.0.0",
     "isparta-instrumenter-loader": "^1.0.0",
     "less": "^2.7.2",
