@@ -21,7 +21,6 @@ function getDefaultModules() {
         test: /\.(js|jsx)$/,
         include: srcPath,
         loader: 'eslint-loader',
-        plugins: [['antd', {style:'css'}]],
       }
     ],
     loaders: [
