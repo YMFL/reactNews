@@ -2,7 +2,7 @@
  * Created by yangqh on 2017/4/6.
  */
 import React from 'react';
-import {Row,Col} from 'antd';
+import { Row,Col } from 'antd';
 import { Menu, Icon } from 'antd';
 class PCHeader extends React.Component {
   render() {
