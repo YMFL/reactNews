@@ -40,7 +40,7 @@ class PCHeader extends React.Component {
 
 
   render() {
-    let {getFieldProps} = this.props.form;
+    let {getFieldDecorator} = this.props.form;
     const usershow =this.state.hasLogined?
       <Menu.Item key="logout" className="register">
         <Button type='primary' htmlType="button" >{this.state.userNickName}</Button>
@@ -96,15 +96,15 @@ class PCHeader extends React.Component {
             <Modal title="用户中心" wrapClassName="vertical-center-modal" visible={this.state.modalVisible} onCancel={()=>this.setModalVisible(false)} onOk={()=>this.setModalVisible(false)} okText="关闭">
               <Tabs type="card">
                 <TabPane tab="注册" key="2">
-                  <Form horizontal onSubmit={this.handleSubmit.bind(this)}>
+                  <Form  onSubmit={this.handleSubmit.bind(this)}>
                     <FormItem label="账户">
-                      <input type="text" placeholder="请输入您的账号" {...getFieldProps('r_userName')}/>
+                      <input type="text" placeholder="请输入您的账号" {...getFieldDecorator('r_userName')}/>
                     </FormItem>
                     <FormItem label="密码">
-                      <input type="password" placeholder="请输入您的密码" {...getFieldProps('r_password')}/>
+                      <input type="password" placeholder="请输入您的密码" {...getFieldDecorator('r_password')}/>
                     </FormItem>
                     <FormItem label="密码">
-                      <input type="password" placeholder="请再次输入您的密码" {...getFieldProps('r_confirmPassword')}/>
+                      <input type="password" placeholder="请再次输入您的密码" {...getFieldDecorator('r_confirmPassword')}/>
                     </FormItem>
                     <Button type="primary" htmlType="submit">注册</Button>
                   </Form>
