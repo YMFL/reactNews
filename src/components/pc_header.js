@@ -3,19 +3,57 @@
  */
 import React from 'react';
 import {Row, Col} from 'antd';
-import {Menu, Icon, Tabs, message, Form, Input, Button, Checkbox,} from 'antd';
+import {Menu, Icon, Tabs, message, Form, Input, Button, Checkbox, Modal} from 'antd';
 const FormItem = Form.Item;
 const SubMemu = Menu.SubMenu;
 const MenuItemGroup =Menu.ItemGroup;
+const TabPane=Tabs.TabPane;
 class PCHeader extends React.Component {
   constructor() {
     super();
     this.state = {
-      current: 'top'
+      current: 'top',
+      modalVisible:false,
+      action:'login',
+      hasLogined:false,
+      userNickName:'',
+      userid:0
     };
+  };
+  setModalVisible(value){
+    this.setState({modalVisible:value})
+  }
+  handleClick(e){
+    if(e.key='register'){
+      this.setState({current:'register'});
+      this.setModalVisible(true);
+    }else {
+      {
+        this.setState({current:e.key});
+      }
+    }
+  }
+  handleSubmit(e){
+    //页面开始向API提交数据
   }
 
+
+
   render() {
+    let {getFieldProps} = this.props.form;
+    const usershow =this.state.hasLogined?
+      <Menu.Item key="logout" className="register">
+        <Button type='primary' htmlType="button" >{this.state.userNickName}</Button>
+        &nbsp;&nbsp;
+        <Link target="_blank">
+          <Button  htmlType="button">个人中心</Button>
+        </Link>
+        &nbsp;&nbsp;
+        <Button type="dashed" htmlType="button">退出</Button>
+      </Menu.Item> :
+      <Menu.Item key="register" className="register">
+        <Icon type="appstore" /> 注册/登录
+      </Menu.Item>;
     return (
       <header>
         <Row>
@@ -28,7 +66,7 @@ class PCHeader extends React.Component {
             </a>
           </Col>
           <Col span={16}>
-            <Menu mode="horizontal" selectedKeys={[this.state.current]}>
+            <Menu mode="horizontal" selectedKeys={[this.state.current]} onClick={this.handleClick.bind(this)}>
               <Menu.Item key="top">
                 <Icon type="appstore"/>头条
               </Menu.Item>
@@ -53,7 +91,26 @@ class PCHeader extends React.Component {
               <Menu.Item key="shishang">
                 <Icon type="coffee"/>时尚
               </Menu.Item>
+              {usershow}
             </Menu>
+            <Modal title="用户中心" wrapClassName="vertical-center-modal" visible={this.state.modalVisible} onCancel={()=>this.setModalVisible(false)} onOk={()=>this.setModalVisible(false)} okText="关闭">
+              <Tabs type="card">
+                <TabPane tab="注册" key="2">
+                  <Form horizontal onSubmit={this.handleSubmit.bind(this)}>
+                    <FormItem label="账户">
+                      <input type="text" placeholder="请输入您的账号" {...getFieldProps('r_userName')}/>
+                    </FormItem>
+                    <FormItem label="密码">
+                      <input type="password" placeholder="请输入您的密码" {...getFieldProps('r_password')}/>
+                    </FormItem>
+                    <FormItem label="密码">
+                      <input type="password" placeholder="请再次输入您的密码" {...getFieldProps('r_confirmPassword')}/>
+                    </FormItem>
+                    <Button type="primary" htmlType="submit">注册</Button>
+                  </Form>
+                </TabPane>
+              </Tabs>
+            </Modal>
           </Col>
           <Col span={2}></Col>
         </Row>
@@ -63,4 +120,4 @@ class PCHeader extends React.Component {
 }
 PCHeader.defaultProps = {};
 
-export default PCHeader;
+export default PCHeader =Form.create({})(PCHeader);
