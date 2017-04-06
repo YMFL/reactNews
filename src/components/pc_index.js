@@ -13,6 +13,7 @@ class PCIndex extends React.Component {
     );
   }
 }
+
 PCIndex.defaultProps = {
 };
 
