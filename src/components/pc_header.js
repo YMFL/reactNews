@@ -35,6 +35,7 @@ class PCHeader extends React.Component {
   }
   handleSubmit(e){
     //页面开始向API提交数据
+    e.preventDefault();
   }
 
 
@@ -98,13 +99,13 @@ class PCHeader extends React.Component {
                 <TabPane tab="注册" key="2">
                   <Form  onSubmit={this.handleSubmit.bind(this)}>
                     <FormItem label="账户">
-                      <input type="text" placeholder="请输入您的账号" {...getFieldDecorator('r_userName')}/>
+                      <Input type="text" placeholder="请输入您的账号" {...getFieldDecorator('r_userName')}/>
                     </FormItem>
                     <FormItem label="密码">
-                      <input type="password" placeholder="请输入您的密码" {...getFieldDecorator('r_password')}/>
+                      <Input type="password" placeholder="请输入您的密码" {...getFieldDecorator('r_password')}/>
                     </FormItem>
                     <FormItem label="密码">
-                      <input type="password" placeholder="请再次输入您的密码" {...getFieldDecorator('r_confirmPassword')}/>
+                      <Input type="password" placeholder="请再次输入您的密码" {...getFieldDecorator('r_confirmPassword')}/>
                     </FormItem>
                     <Button type="primary" htmlType="submit">注册</Button>
                   </Form>
