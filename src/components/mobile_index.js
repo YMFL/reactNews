@@ -40,7 +40,6 @@ class MoblieIndex extends React.Component {
           <TabPane tab="时尚" key="8">
 
           </TabPane>
-
         </Tabs>
         <MobileFooter/>
       </div>
