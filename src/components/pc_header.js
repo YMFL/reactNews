@@ -4,6 +4,8 @@
 import React from 'react';
 import {Row, Col} from 'antd';
 import {Menu, Icon, Tabs, message, Form, Input, Button, Checkbox, Modal} from 'antd';
+import { Router,Route,hasHistory,Link } from 'react-router';
+
 const FormItem = Form.Item;
 const SubMemu = Menu.SubMenu;
 const MenuItemGroup =Menu.ItemGroup;
@@ -36,8 +38,34 @@ class PCHeader extends React.Component {
   handleSubmit(e){
     //页面开始向API提交数据
     e.preventDefault();
+    var myFetchOptions={
+      method:'GET'
+    };
+    var formData=this.props.form.getFieldsValue();
+    console.log(formData);
+    fetch("http://newsapi.gugujiankong.com/Handler.ashx?action="+this.state.action+"&username="+formData.userName+"&password="+formData.password  +"&r_userName="+ formData.r_userName+
+      "&r_password="+formData.r_password+"&r_confirmPassword="+formData.r_confirmPassword,myFetchOptions)
+      .then(response=>response.json()).then(json=>{
+        this.setState({
+          userNickName:json.NickUserName,
+          userid:json.UserId
+        });
+        if(this.state.action=='login'){
+          this.setState({hasLogined:true})
+        }
+        message.success('require success!');
+        this.setModalVisible(false);
+    }).catch(function(e) {
+      message.error('require defeated!')
+    });
   }
-
+  callback(key){
+    if(key==1){
+      this.setState({action:'login'});
+    }else if(key==2){
+      this.setState({action:'register'});
+    }
+  }
 
 
   render() {
@@ -46,7 +74,7 @@ class PCHeader extends React.Component {
       <Menu.Item key="logout" className="register">
         <Button type='primary' htmlType="button" >{this.state.userNickName}</Button>
         &nbsp;&nbsp;
-        <Link target="_blank">
+        <Link target="_blank" className="registerLink">
           <Button  htmlType="button">个人中心</Button>
         </Link>
         &nbsp;&nbsp;
@@ -60,13 +88,14 @@ class PCHeader extends React.Component {
         <Row>
           <Col span={2}></Col>
 
-          <Col span={4}>
+          <Col span={3}>
             <a href="/" className="logo">
-              <img src="../images/news.png" alt="logo"/>
+              {/*内容太多，删除了img*/}
+              {/*<img src="../images/news.png" alt="logo"/>*/}
               <span>React News</span>
             </a>
           </Col>
-          <Col span={16}>
+          <Col span={17}>
             <Menu mode="horizontal" selectedKeys={[this.state.current]} onClick={this.handleClick.bind(this)}>
               <Menu.Item key="top">
                 <Icon type="appstore"/>头条
@@ -94,18 +123,31 @@ class PCHeader extends React.Component {
               </Menu.Item>
               {usershow}
             </Menu>
-            <Modal title="用户中心" wrapClassName="vertical-center-modal" visible={this.state.modalVisible} onCancel={()=>this.setModalVisible(false)} onOk={()=>this.setModalVisible(false)} okText="关闭">
-              <Tabs type="card">
+            <Modal title="用户中心" wrapClassName="vertical-center-modal" visible={this.state.modalVisible}
+                   onCancel={()=>this.setModalVisible(false)} onOk={()=>this.setModalVisible(false)} okText="关闭">
+              <Tabs type="card" onChange={this.callback.bind(this)}>
+                <TabPane tab="登录" key="1">
+                  <Form  onSubmit={this.handleSubmit.bind(this)}>
+                    <FormItem label="账户">
+                      {getFieldDecorator('userName')(<Input type="text" placeholder="请输入您的账号"/>)}
+                    </FormItem>
+                    <FormItem label="密码">
+                      {getFieldDecorator('password')(<Input type="password" placeholder="请输入您的密码"/>)}
+                    </FormItem>
+                    <Button type="primary" htmlType="submit">登录</Button>
+                  </Form>
+                </TabPane>
+
                 <TabPane tab="注册" key="2">
                   <Form  onSubmit={this.handleSubmit.bind(this)}>
                     <FormItem label="账户">
-                      <Input type="text" placeholder="请输入您的账号" {...getFieldDecorator('r_userName')}/>
+                      {getFieldDecorator('r_userName')(<Input type="text" placeholder="请输入您的账号"/>)}
                     </FormItem>
                     <FormItem label="密码">
-                      <Input type="password" placeholder="请输入您的密码" {...getFieldDecorator('r_password')}/>
+                      {getFieldDecorator('r_password')(<Input type="password" placeholder="请输入您的密码"/>)}
                     </FormItem>
-                    <FormItem label="密码">
-                      <Input type="password" placeholder="请再次输入您的密码" {...getFieldDecorator('r_confirmPassword')}/>
+                    <FormItem label="确认密码">
+                      {getFieldDecorator('r_confirmPassword')(<Input type="password" placeholder="请再次输入您的密码"/>)}
                     </FormItem>
                     <Button type="primary" htmlType="submit">注册</Button>
                   </Form>

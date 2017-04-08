@@ -1,11 +1,13 @@
+@blue : #2db7f5;
+@background : #f6f6f6;
 html{
   font-size: 50px;
 }
 #mobileheader{
   flex: 1;
-  background: #f6f6f6;
+  background: @background;
   header{
-    border-bottom: 1px solid #2db7f5;
+    border-bottom: 1px solid @blue;
     padding-left: 5px;
     img{
       height: 50px;
@@ -14,7 +16,14 @@ html{
       font-size: 35px;
       vertical-align: top;
       padding-left: 10px;
-      color: #2db7f5;
+      color: @blue;
     }
+  }
+  i{
+    font-size: 0.5rem;
+    float: right;
+    margin-right: 0.3rem;
+    margin-top: 0.3rem;
+    color: @blue;
   }
 }
