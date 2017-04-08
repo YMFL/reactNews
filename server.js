@@ -20,6 +20,7 @@ new WebpackDevServer(compiler, config.devServer)
     console.log(err);
   }
   console.log('Listening at localhost:' + config.port);
+  open('http://localhost:'+config.port);
 });
 
 compiler.plugin('done', () => {
