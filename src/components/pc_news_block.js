@@ -2,15 +2,18 @@
  * Created by Administrator on 2017/4/8.
  */
 import React from 'react';
-class AppComponent extends React.Component {
+import { Card } from 'antd';
+import {Router, Route, hasHistory, Link} from 'react-router';
+
+class PCNewsBlock extends React.Component {
   render() {
     return (
-      <div>
+      <div className="topNewsList">
       </div>
     );
   }
 }
-AppComponent.defaultProps = {
+PCNewsBlock.defaultProps = {
 };
 
-export default AppComponent;
+export default PCNewsBlock;
