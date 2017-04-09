@@ -27,8 +27,6 @@ class PCNewsContainer extends React.Component {
                   <div><img src="../images/carousel_2.jpg" alt="carousel_2.jpg"/></div>
                   <div><img src="../images/carousel_3.jpg" alt="carousel_3.jpg"/></div>
                   <div><img src="../images/carousel_4.jpg" alt="carousel_4.jpg"/></div>
-                  <div><img src="../images/carousel_5.jpg" alt="carousel_5.jpg"/></div>
-                  <div><img src="../images/carousel_6.jpg" alt="carousel_6.jpg"/></div>
                 </Carousel>
               </div>
             </div>
