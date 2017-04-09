@@ -29,7 +29,7 @@ class MobileList extends React.Component {
       news.map((newsItem, index) => (
         //遍历  要给key  不然会有警告
         <section key={index} className="m_article list-item special_section clearfix">
-          <Link to={'details/${newsItem.uniquekey}'}>
+          <Link to={`details/${newsItem.uniquekey}`}>
             <div className="m_article_img">
               <img src={newsItem.thumbnail_pic_s} alt={newsItem.uniquekey}/>
             </div>

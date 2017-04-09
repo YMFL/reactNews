@@ -1,5 +1,5 @@
 /**
- * Created by YangQianHui on 2017/4/8.
+ * Created by YangQianhu on 2017/4/8.
  */
 import React from 'react';
 import { Card } from 'antd';
@@ -25,7 +25,7 @@ class PCNewsBlock extends React.Component {
     const newsList=news.length ?
       news.map((newsItem,index)=>
         <li key={index}>
-          <Link to={'details/${newsItem.uniquekey}'} target="_blank" title={newsItem.title}>
+          <Link to={`details/${newsItem.uniquekey}`} target="_blank" title={newsItem.title}>
             {newsItem.title}
           </Link>
         </li>
