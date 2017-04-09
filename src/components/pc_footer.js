@@ -1,5 +1,5 @@
 /**
- * Created by yangqh on 2017/4/6.
+ * Created by YangQianHui on 2017/4/6.
  */
 import React from 'react';
 import { Row,Col } from 'antd';
