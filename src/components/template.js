@@ -1,3 +1,4 @@
+//这个文件在项目中没有用到，只是作为一个模板文件
 import React from 'react';
 class AppComponent extends React.Component {
   render() {
@@ -10,7 +11,7 @@ class AppComponent extends React.Component {
 AppComponent.defaultProps = {};
 
 export default AppComponent;
-
+//api  获取的文件结构
 //http://newsapi.gugujiankong.com/Handler.ashx?action=getnews&type=top&count=10;
 const ar = [
   {
