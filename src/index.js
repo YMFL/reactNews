@@ -13,6 +13,7 @@ import MobileIndex from './components/mobile_index';
 //样式
 import 'antd/dist/antd.css';
 
+
 export default class Root extends React.Component{
   render(){
     return(
