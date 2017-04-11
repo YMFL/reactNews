@@ -14,7 +14,7 @@ class MobileList extends React.Component {
   };
 
   componentWillMount() {
-    console.log(this.props.type)
+    console.log(this.props.type);
     var myFetchOptions = {
       method: 'GET'
     };

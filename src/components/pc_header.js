@@ -38,6 +38,7 @@ class PCHeader extends React.Component {
   }
 
   handleClick(e) {
+    console.log(e.key)
     if (e.key == 'register') {
       this.setState({current: 'register'});
       this.setModalVisible(true);

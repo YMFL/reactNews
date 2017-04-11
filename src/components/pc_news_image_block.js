@@ -19,7 +19,7 @@ class PCNewsImageBlock extends React.Component {
     };
     fetch("http://newsapi.gugujiankong.com/Handler.ashx?action=getnews&type=" + this.props.type + "&count=" + this.props.count, myFetchOptions)
       .then(response => response.json())
-      .then(json => this.setState({news: json}))
+      .then(json => this.setState({news: json}));
   };
 
   render() {

@@ -32,12 +32,11 @@ class PCNewsContainer extends React.Component {
               </div>
               <div>
                 <PCNewsImageBlock count={6} type="guoji" width="400px"  cardTitle="国际头条"  imageWidth="112px"/>
-                {/*<PCNewsImageBlock count={6} type="yule" width="400px"  cardTitle="娱乐头条"  imageWidth="112px"/>*/}
               </div>
             </div>
             {/*<div className="rightContainer">*/}
             {/*</div>*/}
-            <Tabs className="tabs_news">
+            <Tabs className="tabs_news" >
               <TabPane tab="头条" key="1">
                 <PCNewsBlock count={22} type='top' width="100%" bordered="false" />
               </TabPane>
