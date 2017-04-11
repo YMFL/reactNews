@@ -14,7 +14,8 @@ class PCUserCenter extends React.Component {
     this.state = {
       usercollaection: '',
       previewImage: '',
-      previewVisible: false
+      previewVisible: false,
+      usercomments: ''
     }
   };
 
@@ -28,10 +29,19 @@ class PCUserCenter extends React.Component {
         this.setState({
           usercollaection: json
         })
-        document.title = this.state.newsItem.title + "- React News | React 驱动的新闻平台";
+      });
+    fetch("http://newsapi.gugujiankong.com/Handler.ashx?action=getusercomments&userid=" + localStorage.userid, myFetchOptions)
+      .then(response => response.json())
+      .then(json => {
+        this.setState({usercomments: json});
       });
   };
-
+  handleCancel = (e) => {
+    console.log(e);
+    this.setState({
+      previewVisible: false,
+    });
+  }
   render() {
     const props = {
       action: 'http://newsapi.gugujiankong.com/Handler.ashx',
@@ -57,14 +67,23 @@ class PCUserCenter extends React.Component {
         })
       }
     }
-    const {usercollaection} =this.state;
-    const usercollaectionList = usercollaection.length ?
+    const {usercollaection, usercomments} =this.state;
+    const usercollectionList = usercollaection.length ?
       usercollaection.map((uc, index) => (
         <Card key={index} title={uc.uniquekey} extra={<a target="_blank" href={`/#/details/${uc.uniquekey}`}>查看</a>}>
           <p>{uc.Title}</p>
         </Card>
       ))
       : '您还没有收藏任何新闻，快去收藏一些新闻吧！';
+    const usercommentsList = usercomments.length ?
+      usercomments.map((comment, index) => (
+        <Card key={index} title={`于${comment.datetime} 评论了文章 ${comment.uniquekey}`}
+              extra={<a target="_blank" href={`/#/details/${comment.uniquekey}`}>查看</a>}>
+          <p>{comment.Comments}</p>
+        </Card>
+      ))
+      :
+      '您还没有发表过任何评论。';
     return (
       <div>
         <PCHeader />
@@ -76,12 +95,19 @@ class PCUserCenter extends React.Component {
                 <div className="comment">
                   <Row>
                     <Col span={24}>
-                      {usercollaectionList}
+                      {usercollectionList}
                     </Col>
                   </Row>
                 </div>
               </TabPane>
               <TabPane tab="我的评论" key="2">
+                <div className="comment">
+                  <Row>
+                    <Col span={24}>
+                      {usercommentsList}
+                    </Col>
+                  </Row>
+                </div>
               </TabPane>
               <TabPane tab="头像设置" key="3">
                 <div className="clearfix">
@@ -89,7 +115,7 @@ class PCUserCenter extends React.Component {
                     <Icon type="plus"/>
                     <div className="ant-upload-text">上传照片</div>
                   </Upload>
-                  <Modal visible={this.state.previewVisible} footer={null} onCancel={this.handleCancel}>
+                  <Modal visible={this.state.previewVisible} footer={null} onCancel={this.handleCancel.bind(this)}>
                     <img src={this.state.previewImage} alt="预览"/>
                   </Modal>
                 </div>
