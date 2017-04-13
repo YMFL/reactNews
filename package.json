@@ -52,6 +52,7 @@
     "react-hot-loader": "^1.2.9",
     "react-responsive": "^1.2.7",
     "react-router": "^2.8.1",
+    "react-touch-loader": "^1.1.0",
     "rimraf": "^2.4.3",
     "style-loader": "^0.13.0",
     "url-loader": "^0.5.6",
